@@ -1,2 +1,0 @@
-document.querySelector("#datetime-picker");const e=document.querySelector("[data-start]");document.querySelectorAll(".value");e.disabled=!0;let t=null;const a={enableTime:!0,time_24hr:!0,defaultDate:new Date,minuteIncrement:1,onClose(l){if(t=l[0],t>a.defaultDate){e.disabled=!1;return t-a.defaultDate}window.alert("Please choose the data in the future")}};
-//# sourceMappingURL=02-timer.c0611d80.js.map
