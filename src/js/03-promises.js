@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix'
 
   const form = document.querySelector('.form');
   const firstDelay = document.querySelector('[name="delay"]');
@@ -16,12 +17,10 @@
     for (let position = 1; position <= amountForm; position += 1) {
       delay =  delayForm + firstDelayForm * (position-1);
       createPromise(position, delay).then(({ position, delay }) => {
-        // Notify.success
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
-        // Notify.failure
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
     })
   }};
 
