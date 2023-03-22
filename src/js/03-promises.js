@@ -13,6 +13,12 @@ import Notiflix from 'notiflix'
     const amountForm = Number(amountInput.value);
     const delayForm = Number(firstDelay.value);
     const firstDelayForm = Number(delayStep.value);
+
+    if (firstDelayForm < 0 || delayForm < 0 || amountForm <= 0) {
+      Notiflix.Notify.warning("⚠️ Attention! Please enter valid values.");
+      return;
+    };
+
     let delay = 0;
     for (let position = 1; position <= amountForm; position += 1) {
       delay =  delayForm + firstDelayForm * (position-1);

@@ -42,41 +42,27 @@ const options = {
     return { days, hours, minutes, seconds };
   }
 
-  startBtn.addEventListener('click', onStartBtnClick);
+  function addLeadingZero(value) {
+    return value.toString().padStart(2, '0');
+  };
+
+  
 
   function onStartBtnClick () {
     intervalId = setInterval(() => {
       let currentTime = Date.now();
       const timeLeft = selectDate - currentTime;
-    dataDays.textContent = convertMs(timeLeft).days;
-    dataHours.textContent = convertMs(timeLeft).hours;
-    dataMinutes.textContent = convertMs(timeLeft).minutes;
-    dataSeconds.textContent = convertMs(timeLeft).seconds;
-    
-if (timeLeft < 1000) {
-  clearInterval(intervalId);
-  startBtn.disabled = false;
-  return
-}
-},1000);
-};
+      dataDays.textContent = addLeadingZero(convertMs(timeLeft).days);
+      dataHours.textContent = addLeadingZero(convertMs(timeLeft).hours);
+      dataMinutes.textContent = addLeadingZero(convertMs(timeLeft).minutes);
+      dataSeconds.textContent = addLeadingZero(convertMs(timeLeft).seconds);
+  
+      if (timeLeft <= 1000) {
+        clearInterval(intervalId);
+        startBtn.disabled = false;
+        return;
+      }
+    }, 1000);
+  };
 
-// const timeComponents = convertMs(timeLeft);
-    // onTime(timeComponents);
-// const { days, hours, minutes, seconds } = convertMs(timeLeft);
-
-
-  // function addLeadingZero (value) {
-  //   return String(value).padStart(2, "0");
-  //     };
-
-
-// //   // console.log(convertMs.padStart(2, "0"));
-
-  // function onTime ({ days, hours, minutes, seconds }) {
-  //   dataDays.textContent = '${days}';
-  //   dataHours.textContent = '${hours}';
-  //   dataMinutes.textContent = '${minutes}';
-  //   dataSeconds.textContent = '${seconds}';
-  // }
-
+  startBtn.addEventListener('click', onStartBtnClick);
